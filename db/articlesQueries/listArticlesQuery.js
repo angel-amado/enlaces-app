@@ -15,8 +15,12 @@ const listArticlesQuery = async () => {
 
         [articles] = await connection.query(
             `
-            SELECT url,title,description, avg(rating) AS "Ratings Usuarios" FROM articles INNER JOIN ratings ON articles.id = ratings.idArticle
-            
+            SELECT  url,Title,Description , ROUND(AVG(rating),2) AS "Rating_articles"
+            FROM articles
+                LEFT JOIN ratings
+                    ON articles.id = ratings.idArticle
+            GROUP BY url, title, description
+            ORDER BY Rating_articles DESC;
             `
         );
         return articles;
