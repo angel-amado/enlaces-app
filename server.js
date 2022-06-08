@@ -44,6 +44,7 @@ const {
     newArticle,
     deleteArticle,
     listArticles,
+    listOneArticle,
 } = require('./controllers/article');
 
 // Crea una nueva publicación.  ** Necesita token **
@@ -51,6 +52,9 @@ app.post('/article', authUser, newArticle);
 
 // Seleccion de TODAS las publicaciones, incluyendo información sobre el rating   ** Necesita token **
 app.get('/articles', authUser, listArticles);
+
+// Selecciona una publicacion, incluyendo información sobre el rating   ** Necesita token **
+app.get('/article/:idArticle', authUser, listOneArticle);
 
 // Elimina una publicación si eres el dueño.   ** Necesita token **
 app.delete('/delete/:idArticle', authUser, deleteArticle);

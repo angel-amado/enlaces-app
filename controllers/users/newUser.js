@@ -38,14 +38,7 @@ const newUser = async (req, res, next) => {
         });
     } catch (error) {
         next(error);
-        //Si el usuario ya existe, lo redirigimos a la página de login.
-        //res.redirect(307, '/login');
     }
-
-    /* res.send({
-        status: 'error',
-        message: 'Usuario ya existente, redirigiendo al acceso',
-    })*/
 };
 
 module.exports = newUser;
