@@ -3,33 +3,26 @@ const getConnection = require('../getConnection');
 
 const updateUserByIdQuery = async (idUser, body) => {
     let connection;
-    let key;
-    let value;
 
-    const bodyKeys = ['alias', 'description'];
-    const bodyValues = ['rambo', 'soy rambo el luchador'];
+    //Transformo el objeto body en un array de propiedades y en un array de valores
+    const bodyKeys = Object.keys(body); //['alias']
+    const bodyValues = Object.values(body); //['Rambo']
 
-    bodyValues.forEach((element) => (values += ', ' + element));
+    /* bodyValues.forEach((element) => (values += ', ' + element));
     bodyKeys.forEach((element) => (Keys += ', ' + element));
     console.log(Keys);
-    console.log(values);
-    //Transformo el objeto en un array
-    const bodyKeys = Object.keys(body);
-    const bodyValues = Object.values(body);
+    console.log(values);*/
 
     console.log('Aqui estoy');
-    console.log(idUser);
-    //console.log(body);
-
     console.log(bodyKeys);
     console.log(bodyValues);
 
     try {
         connection = await getConnection();
-        await connection.query(
-            `UPDATE users SET ${keys} = ?, ${key2} WHERE id= ?`,
-            [`${value},`]
-        );
+        await connection.query(`UPDATE users SET ${bodyKeys} = ? WHERE id= ?`, [
+            idUser,
+            `${bodyValues},`,
+        ]);
     } finally {
         if (connection) connection.release();
     }
