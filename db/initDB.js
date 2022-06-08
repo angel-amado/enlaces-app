@@ -24,7 +24,7 @@ async function main() {
                 lastName VARCHAR(50) NOT NULL,
                 email VARCHAR(50) UNIQUE NOT NULL,
                 password VARCHAR(75) NOT NULL,
-                biography VARCHAR(200),
+                biography VARCHAR(200),  
                 picture VARCHAR(100),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

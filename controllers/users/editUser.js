@@ -6,6 +6,7 @@ const { createPathIfNotExists } = require('../../helpers');
 
 const editUser = async (req, res, next) => {
     try {
+        // Obtenemos los campos del body.
         const { alias, name, firstName, lastName, email, password, biography } =
             req.body;
 
@@ -28,6 +29,8 @@ const editUser = async (req, res, next) => {
             //Asignamos a esta imagen un nombre único de 24 caracteres, usando la librería "nanoid"
             imgName = `${nanoid(24).jpg}`;
 
+            req.body.imgName = imgName;
+
             //Genero la ruta absoluta a la imagen
             const imgPath = path.join(uploadsDir, imgName);
 
@@ -35,8 +38,8 @@ const editUser = async (req, res, next) => {
             await sharpImage.toFile(imgPath);
         }
 
-        await updateUserByIdQuery(
-            req.idUser,
+        /*
+        let arrayParam = [
             alias,
             name,
             firstName,
@@ -44,8 +47,16 @@ const editUser = async (req, res, next) => {
             email,
             password,
             biography,
-            imgName
-        );
+        ];
+        let realParam = [];
+        for (let params of arrayParam) {
+            if (params) {
+                realParam.push(params);
+            }
+        }
+        */
+
+        await updateUserByIdQuery(req.idUser, req.body);
 
         res.send({
             status: 'ok',
