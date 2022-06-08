@@ -13,6 +13,10 @@ const newRating = async (req, res, next) => {
             throw generateError('Falta el rating', 400);
         }
 
+        if (rating < 1 || rating > 5) {
+            throw generateError('El rating debe estar entre 1 y 5', 400);
+        }
+
         const article = await selectArticleByIdQuery(idArticle);
 
         // Comprobamos si el usuario tiene permisos para valorar la publicacion.

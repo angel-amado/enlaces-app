@@ -10,8 +10,6 @@ const editUser = async (req, res, next) => {
         const { alias, name, firstName, lastName, email, password, biography } =
             req.body;
 
-        let imgName;
-
         //En caso de que exista una imagen, la guardamos
         if (req.files && req.files.image) {
             //Creamos una ruta absoluta a la carpeta "uploads"
@@ -27,34 +25,17 @@ const editUser = async (req, res, next) => {
             sharpImage.resize(500);
 
             //Asignamos a esta imagen un nombre único de 24 caracteres, usando la librería "nanoid"
-            imgName = `${nanoid(24).jpg}`;
-
-            req.body.imgName = imgName;
+            imgName = `${nanoid(24)}.jpg`;
 
             //Genero la ruta absoluta a la imagen
             const imgPath = path.join(uploadsDir, imgName);
 
             //Guardo la imagen en mi servidor
             await sharpImage.toFile(imgPath);
-        }
 
-        /*
-        let arrayParam = [
-            alias,
-            name,
-            firstName,
-            lastName,
-            email,
-            password,
-            biography,
-        ];
-        let realParam = [];
-        for (let params of arrayParam) {
-            if (params) {
-                realParam.push(params);
-            }
+            //Añadimos este nombre de imagen al objeto body
+            req.body.picture = imgName;
         }
-        */
 
         await updateUserByIdQuery(req.idUser, req.body);
 

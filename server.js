@@ -49,7 +49,7 @@ const {
 // Crea una nueva publicación.  ** Necesita token **
 app.post('/article', authUser, newArticle);
 
-// Seleccion de TODAS las publicaciones.  ** Necesita token **
+// Seleccion de TODAS las publicaciones, incluyendo información sobre el rating   ** Necesita token **
 app.get('/articles', authUser, listArticles);
 
 // Elimina una publicación si eres el dueño.   ** Necesita token **
