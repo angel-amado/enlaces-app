@@ -9,8 +9,8 @@ const insertArticleQuery = async (url, title, description, idUser) => {
 
         //Nos aseguramos que la url no se repite
         const [selectArticle] = await connection.query(
-            `SELECT url FROM articles WHERE url= ?`,
-            [url]
+            `SELECT url FROM articles WHERE url= ? AND idUser= ?`,
+            [url, idUser]
         );
 
         console.log(selectArticle);
