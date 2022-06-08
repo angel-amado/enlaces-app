@@ -1,35 +1,29 @@
-const { object, alternatives } = require('joi');
 const getConnection = require('../getConnection');
+const bcrypt = require('bcrypt');
 
 const updateUserByIdQuery = async (idUser, body) => {
     let connection;
-    let key;
-    let value;
 
-    const bodyKeys = ['alias', 'description'];
-    const bodyValues = ['rambo', 'soy rambo el luchador'];
-
-    bodyValues.forEach((element) => (values += ', ' + element));
-    bodyKeys.forEach((element) => (Keys += ', ' + element));
-    console.log(Keys);
-    console.log(values);
     //Transformo el objeto en un array
     const bodyKeys = Object.keys(body);
     const bodyValues = Object.values(body);
 
-    console.log('Aqui estoy');
-    console.log(idUser);
-    //console.log(body);
-
-    console.log(bodyKeys);
-    console.log(bodyValues);
+    let myQuery = ' ';
+    for (let i = 0; i < bodyKeys.length; i++) {
+        if (bodyKeys[i] === 'password') {
+            bodyValues[i] = await bcrypt.hash(bodyValues[i], 10);
+        }
+        myQuery += `${bodyKeys[i]} = "${bodyValues[i]}"`;
+        if (i < bodyKeys.length - 1) {
+            myQuery += ', ';
+        }
+    }
 
     try {
         connection = await getConnection();
-        await connection.query(
-            `UPDATE users SET ${keys} = ?, ${key2} WHERE id= ?`,
-            [`${value},`]
-        );
+        await connection.query(`UPDATE users SET${myQuery} WHERE id= ?`, [
+            idUser,
+        ]);
     } finally {
         if (connection) connection.release();
     }
