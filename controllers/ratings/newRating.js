@@ -13,6 +13,7 @@ const newRating = async (req, res, next) => {
             throw generateError('Falta el rating', 400);
         }
 
+        //Comprobamos que el rating esté comprendido entre 1 y 5
         if (rating < 1 || rating > 5) {
             throw generateError('El rating debe estar entre 1 y 5', 400);
         }
