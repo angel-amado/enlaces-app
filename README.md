@@ -21,15 +21,21 @@ La arquitectura de la aplicación sigue un esquema Model-View-Controller.
 
 En nuestra base de datos hemos creado tres entidades: users, articles and ratings.
 
+
+![DB_1](https://user-images.githubusercontent.com/93152011/172813567-a571cce9-96dd-422d-8309-85dd8ea34d60.png)
+
 ## Endpoints de la aplicación
 
-    ### usuarios
 
+   ### usuarios   
+   
+   
 -   POST (/users) -> Crear un nuevo usuario.
 -   POST (/login) -> Acceder con el usuario.
 -   PUT (/editprofile) -> Editar el perfil del usuario.
 
     ### publicaciones
+
 
 -   POST (/article) -> Crea una nueva publicación.
 -   GET (/articles) -> Selecciona TODAS las publicaciones.
