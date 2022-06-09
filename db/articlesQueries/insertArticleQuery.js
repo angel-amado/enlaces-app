@@ -16,7 +16,7 @@ const insertArticleQuery = async (url, title, description, idUser) => {
         console.log(selectArticle);
 
         if (selectArticle.length > 0)
-            throw generateError('URL ya existente.', 400);
+            throw generateError('URL ya existente.', 409);
 
         //Creamos una nueva publicación
         const [newArticle] = await connection.query(

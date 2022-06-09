@@ -24,7 +24,7 @@ async function main() {
                 lastName VARCHAR(50) NOT NULL,
                 email VARCHAR(50) UNIQUE NOT NULL,
                 password VARCHAR(75) NOT NULL,
-                biography VARCHAR(200),  
+                biography VARCHAR(210),  
                 picture VARCHAR(100),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -38,7 +38,7 @@ async function main() {
                 FOREIGN KEY (idUser) REFERENCES users(id),
                 url VARCHAR(100) NOT NULL,
                 title VARCHAR(100) NOT NULL,
-                description VARCHAR(200) NOT NULL,
+                description VARCHAR(220) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )

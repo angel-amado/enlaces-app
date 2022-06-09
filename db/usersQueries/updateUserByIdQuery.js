@@ -4,10 +4,11 @@ const bcrypt = require('bcrypt');
 const updateUserByIdQuery = async (idUser, body) => {
     let connection;
     try {
-        //Transformo el objeto en un array de propiedades y en un array de valores
+        //Transformo el objeto body, en un array de propiedades y en un array de valores
         const bodyKeys = Object.keys(body);
         const bodyValues = Object.values(body);
 
+        //Creo el esquema para la query que mandaré a la base de datos
         let myQuery = ' ';
         for (let i = 0; i < bodyKeys.length; i++) {
             if (bodyKeys[i] === 'password') {

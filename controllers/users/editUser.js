@@ -7,6 +7,7 @@ const { createPathIfNotExists } = require('../../helpers');
 const editUser = async (req, res, next) => {
     try {
         //En caso de que exista una imagen, la guardamos
+        // **Debemos poner el nombre 'image' a la imagen que estamos adjuntando desde el cliente**
         if (req.files && req.files.image) {
             //Creamos una ruta absoluta a la carpeta "uploads"
             const uploadsDir = path.join(__dirname, '/../../uploads');
@@ -33,7 +34,7 @@ const editUser = async (req, res, next) => {
             req.body.picture = imgName;
         }
 
-        //Pasamos el id del usuario y el body a la función de la base de datos.
+        //Pasamos el id del usuario y el body a la función correspondiente en la base de datos.
         await updateUserByIdQuery(req.idUser, req.body);
 
         res.send({

@@ -8,11 +8,8 @@ const listArticlesQuery = async () => {
 
         let articles;
 
-        /*
-         *Si hay palabra clave "keyword" buscamos los artículos que contengan esa palabra
-         * clave. De lo contrario retornamos todos los artículos publicados hasta la fecha.
-         */
-
+        //Retornamos todos los artículos publicados hasta la fecha, añadiendo una columna que muestra
+        //una clasificación de los artículos con su correspondiente rating.
         [articles] = await connection.query(
             `
             SELECT  url,Title,Description , ROUND(AVG(rating),2) AS "Rating_articles"
