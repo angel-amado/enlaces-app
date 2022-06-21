@@ -12,10 +12,15 @@ const newRating = async (req, res, next) => {
         if (!rating) {
             throw generateError('Falta el rating', 400);
         }
+        //Creamos un array conteniendo los valores permitidos para el rating
+        const validRating = [1, 2, 3, 4, 5];
 
-        //Comprobamos que el rating esté comprendido entre 1 y 5
-        if (rating < 1 || rating > 5) {
-            throw generateError('El rating debe estar entre 1 y 5', 400);
+        //Comprobamos que el rating sea uno de los valores permitidos
+        if (!validRating.includes(rating)) {
+            throw generateError(
+                'El rating debe estar entre 1 y 5 (inclusive)',
+                400
+            );
         }
 
         const article = await selectArticleByIdQuery(idArticle);

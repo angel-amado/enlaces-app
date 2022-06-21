@@ -3,9 +3,27 @@ const sharp = require('sharp');
 const { nanoid } = require('nanoid');
 const updateUserByIdQuery = require('../../db/usersQueries/updateUserByIdQuery');
 const { createPathIfNotExists } = require('../../helpers');
+const { generateError } = require('../../helpers');
 
 const editUser = async (req, res, next) => {
     try {
+        //Hacemos destructuring del body.
+        const { alias, name, firstName, lastName, email, password, biography } =
+            req.body;
+
+        //Como mínimo, el usuario debe modificar alguno de los campos permitidos. En caso contrario, lanzamos un error
+        if (
+            !alias &&
+            !name &&
+            !firstName &&
+            !lastName &&
+            !email &&
+            !password &&
+            !biography
+        ) {
+            throw generateError('Falta uno de los campos para editar', 400);
+        }
+
         //En caso de que exista una imagen, la guardamos
         // **Debemos poner el nombre 'image' a la imagen que estamos adjuntando desde el cliente**
         if (req.files && req.files.image) {

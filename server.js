@@ -32,7 +32,7 @@ app.post('/users', newUser);
 app.post('/login', loginUser);
 
 //Editar el perfil del usuario.   ** Necesita token **
-app.put('/editprofile', authUser, editUser);
+app.put('/users', authUser, editUser);
 
 /**
  * #############################
@@ -40,6 +40,7 @@ app.put('/editprofile', authUser, editUser);
  * #############################
  */
 
+const articleExists = require('./middlewares/articleExists');
 const {
     newArticle,
     deleteArticle,
@@ -51,13 +52,13 @@ const {
 app.post('/article', authUser, newArticle);
 
 // Seleccion de TODAS las publicaciones, incluyendo información sobre el rating   ** Necesita token **
-app.get('/articles', authUser, listArticles);
+app.get('/article', authUser, listArticles);
 
 // Selecciona una publicacion, incluyendo información sobre el rating   ** Necesita token **
-app.get('/article/:idArticle', authUser, listOneArticle);
+app.get('/article/:idArticle', authUser, articleExists, listOneArticle);
 
 // Elimina una publicación si eres el dueño.   ** Necesita token **
-app.delete('/delete/:idArticle', authUser, deleteArticle);
+app.delete('/article/:idArticle', authUser, articleExists, deleteArticle);
 
 /**
  * ############################
@@ -68,7 +69,7 @@ app.delete('/delete/:idArticle', authUser, deleteArticle);
 const newRating = require('./controllers/ratings/newRating');
 
 //Votar publicaciones SOLO de otros usuarios y SOLO se permite una votación por publicación/usuario. ** Necesita token **
-app.post('/rating/:idArticle', authUser, newRating);
+app.post('/article/:idArticle/rating', authUser, articleExists, newRating);
 
 /**
  * ######################
