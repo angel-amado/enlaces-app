@@ -19,13 +19,44 @@
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"alias\":\"Ingeniero\",\r\n    \"name\":\"Salvador\",\r\n    \"firstName\": \"Valverde\",\r\n    \"lastName\":\"Comesaña\",\r\n     \"password\":\"654321\",\r\n       \"email\":\"salvador@ingeniero.com\"\r\n       \r\n \r\n   \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/User/Desktop/Formacion/Hack a boss/mini-proyectos/compartir enlaces/img/surfer-avatar.jpg"
+						},
+						{
+							"key": "alias",
+							"value": "Opener",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Adaberto",
+							"type": "text"
+						},
+						{
+							"key": "firstName",
+							"value": "Bito",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Balvoy",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "654321",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "adalii@hotmail.com",
+							"type": "text"
 						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{server}}/users",
@@ -111,7 +142,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{tokenUser1}}",
+						"value": "{{tokenUser2}}",
 						"type": "text"
 					}
 				],
@@ -192,18 +223,24 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{tokenUser3}}",
+						"value": "{{tokenUser1}}",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n   \"alias\": \"Smart-man\",\r\n   \"email\": \"gonzalo@smartman.com\",\r\n   \"biography\": \"Siempre a la búsqueda de la mejor solución a cualquiera de los problemas que se puedan presentar cuando se trata de analizar una gran cantidad de datos.\" \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/User/Desktop/Formacion/Hack a boss/mini-proyectos/compartir enlaces/img/avatar.png"
+						},
+						{
+							"key": "name",
+							"value": "Alberto",
+							"type": "text"
 						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{server}}/users",
@@ -229,13 +266,13 @@
 					}
 				],
 				"url": {
-					"raw": "{{server}}/article/3",
+					"raw": "{{server}}/article/78",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"article",
-						"3"
+						"78"
 					]
 				}
 			},
