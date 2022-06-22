@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "19ed51c4-967b-4224-9598-a6ff2d3ca6fa",
+		"name": "url-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21076782"
+	},
+	"item": [
+		{
+			"name": "users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token_user2}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"alias\":\"Ingeniero\",\r\n    \"name\":\"Salvador\",\r\n    \"firstName\": \"Valverde\",\r\n    \"lastName\":\"Comesaña\",\r\n     \"password\":\"654321\",\r\n       \"email\":\"salvador@ingeniero.com\"\r\n       \r\n \r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/users",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenUser2}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"email\":\"salvador@ingeniero.com\",\r\n      \"password\": \"654321\"\r\n      \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/login",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "article",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenUser2}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n   \"url\":\"www.alladodelvalle.es \",\r\n      \"title\": \"Viajes cerca de casa\",\r\n      \"description\":\"Siempre hay lugares por descubrir a pocos metros de tu vivienda. Las cosas importantes pueden estar cerca de tu hogar.\"\r\n    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/article",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"article"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "article",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenUser1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/article",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"article"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "article/:idArticle",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenUser1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/article/20",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"article",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "article/:idArticle/rating",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenUser2}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"rating\": 2.01\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/article/15/rating",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"article",
+						"15",
+						"rating"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenUser3}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"alias\": \"Smart-man\",\r\n   \"email\": \"gonzalo@smartman.com\",\r\n   \"biography\": \"Siempre a la búsqueda de la mejor solución a cualquiera de los problemas que se puedan presentar cuando se trata de analizar una gran cantidad de datos.\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/users",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/article/:idArticle",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenUser2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/article/3",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"article",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://localhost:4000",
+			"type": "string"
+		},
+		{
+			"key": "tokenUser2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "tokenUser1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "tokenUser3",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

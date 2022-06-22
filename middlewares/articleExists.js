@@ -1,10 +1,13 @@
+const { generateError } = require('../helpers');
 const selectArticleByIdQuery = require('../db/articlesQueries/selectArticleByIdQuery');
 
 const articleExists = async (req, res, next) => {
     try {
         const { idArticle } = req.params;
 
-        await selectArticleByIdQuery(idArticle);
+        const dataExists = await selectArticleByIdQuery(idArticle);
+
+        if (!dataExists) throw generateError('Publicación no encontrada', 404);
 
         // Saltamos al siguiente controlador.
         next();

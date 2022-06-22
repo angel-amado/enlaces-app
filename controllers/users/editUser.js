@@ -40,7 +40,7 @@ const editUser = async (req, res, next) => {
             sharpImage.resize(500);
 
             //Asignamos a esta imagen un nombre único de 24 caracteres, usando la librería "nanoid"
-            imgName = `${nanoid(24)}.jpg`;
+            const imgName = `${nanoid(24)}.jpg`;
 
             //Genero la ruta absoluta a la imagen
             const imgPath = path.join(uploadsDir, imgName);
