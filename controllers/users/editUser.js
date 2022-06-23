@@ -1,9 +1,6 @@
-const path = require('path');
-const sharp = require('sharp');
-const { nanoid } = require('nanoid');
 const updateUserByIdQuery = require('../../db/usersQueries/updateUserByIdQuery');
-const { createPathIfNotExists } = require('../../helpers');
-const { generateError } = require('../../helpers');
+const selectUserByIdQuery = require('../../db/usersQueries/selectUserByIdQuery');
+const { storingPhoto, generateError, deletePhoto } = require('../../helpers');
 
 const editUser = async (req, res, next) => {
     try {
@@ -27,26 +24,14 @@ const editUser = async (req, res, next) => {
         //En caso de que exista una imagen, la guardamos
         // **Debemos poner el nombre 'image' a la imagen que estamos adjuntando desde el cliente**
         if (req.files && req.files.image) {
-            //Creamos una ruta absoluta a la carpeta "uploads"
-            const uploadsDir = path.join(__dirname, '/../../uploads');
+            //Comprobamos si el usuario ya tiene una foto en su perfil
+            const dataPicture = await selectUserByIdQuery(req.idUser);
 
-            //Creamos la carpeta "uploads" en caso de que no exista previamente
-            await createPathIfNotExists(uploadsDir);
+            //Borramos la foto que estaba almacenada anteriormente en nuestro servidor
+            await deletePhoto(dataPicture.picture);
 
-            //Convertimos la imagen a tipo "Sharp"
-            const sharpImage = sharp(req.files.image.data);
-
-            //Usamos un método de "Sharp" para evitar que la imagen supere los 500 px
-            sharpImage.resize(500);
-
-            //Asignamos a esta imagen un nombre único de 24 caracteres, usando la librería "nanoid"
-            const imgName = `${nanoid(24)}.jpg`;
-
-            //Genero la ruta absoluta a la imagen
-            const imgPath = path.join(uploadsDir, imgName);
-
-            //Guardo la imagen en mi servidor
-            await sharpImage.toFile(imgPath);
+            //Guardamos la imagen llamando a la fucion de helpers
+            const imgName = await storingPhoto(req.files.image);
 
             //Añadimos este nombre de imagen al objeto body
             req.body.picture = imgName;
