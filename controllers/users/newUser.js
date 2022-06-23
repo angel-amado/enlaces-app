@@ -15,7 +15,7 @@ const newUser = async (req, res, next) => {
         //En caso de que exista una imagen, la guardamos
         // **Debemos poner el nombre 'image' a la imagen que estamos adjuntando desde el cliente**
         //Si el usuario no ha subido una imagen, añadiremos una imagen por defecto
-        if (req.files && req.files.image) {
+        if (req.files && req.files.imageg) {
             const imgName = await storingPhoto(req.files.image);
             //Añadimos el nombre de imagen al objeto body
             req.body.picture = imgName;
