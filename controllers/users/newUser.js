@@ -1,6 +1,11 @@
 const insertUserQuery = require('../../db/usersQueries/insertUserQuery');
-const { generateError, storingPhoto } = require('../../helpers');
-
+const {
+    generateError,
+    storingPhoto,
+    createPathIfNotExists,
+} = require('../../helpers');
+const path = require('path');
+const sharp = require('sharp');
 const newUser = async (req, res, next) => {
     try {
         // Obtenemos los campos del body.
@@ -18,6 +23,14 @@ const newUser = async (req, res, next) => {
         if (req.files && req.files.imageg) {
             const imgName = await storingPhoto(req.files.image);
             //Añadimos el nombre de imagen al objeto body
+            req.body.picture = imgName;
+        } else {
+            const uploadsDir = path.join('./', 'uploads');
+            await createPathIfNotExists(uploadsDir);
+            const image = sharp('public/avatar.png').resize(500);
+            const imgName = `default_${alias}_image.jpg`;
+            const imgPath = path.join(uploadsDir, imgName);
+            await image.toFile(imgPath);
             req.body.picture = imgName;
         }
 

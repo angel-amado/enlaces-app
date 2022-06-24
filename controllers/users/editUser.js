@@ -16,7 +16,8 @@ const editUser = async (req, res, next) => {
             !lastName &&
             !email &&
             !password &&
-            !biography
+            !biography &&
+            !req.files.image
         ) {
             throw generateError('Falta uno de los campos para editar', 400);
         }
@@ -27,8 +28,7 @@ const editUser = async (req, res, next) => {
             //Comprobamos si el usuario ya tiene una foto en su perfil
             const dataPicture = await selectUserByIdQuery(req.idUser);
 
-            //Borramos la foto que estaba almacenada anteriormente en nuestro servidor
-            await deletePhoto(dataPicture.picture);
+            if (dataPicture.picture) await deletePhoto(dataPicture.picture); //Borramos la foto SI estaba almacenada anteriormente en nuestro servidor
 
             //Guardamos la imagen llamando a la fucion de helpers
             const imgName = await storingPhoto(req.files.image);

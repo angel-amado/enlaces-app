@@ -35,7 +35,7 @@ async function main() {
             CREATE TABLE articles (
                 id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 idUser INTEGER UNSIGNED NOT NULL,
-                FOREIGN KEY (idUser) REFERENCES users(id),
+                FOREIGN KEY (idUser) REFERENCES users(id) ON DELETE CASCADE,
                 url VARCHAR(100) NOT NULL,
                 title VARCHAR(100) NOT NULL,
                 description VARCHAR(220) NOT NULL,
@@ -48,9 +48,9 @@ async function main() {
             CREATE TABLE ratings (
                 id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 idUser INTEGER UNSIGNED NOT NULL,
-                FOREIGN KEY (idUser) REFERENCES users(id),
+                FOREIGN KEY (idUser) REFERENCES users(id) ON DELETE CASCADE,
                 idArticle INTEGER UNSIGNED NOT NULL,
-                FOREIGN KEY (idArticle) REFERENCES articles(id),
+                FOREIGN KEY (idArticle) REFERENCES articles(id) ON DELETE CASCADE,
                 rating TINYINT UNSIGNED NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
