@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "1f04366b-1961-4473-9dfd-e2df50c0d3f3",
+		"name": "URL-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"angel@angel.com\",\n    \"password\":\"angel\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ajilimojili\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Articles",
+			"item": [
+				{
+					"name": "Delete article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/article/2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"article",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New article",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjMzLCJpYXQiOjE2NTY0OTU0NDIsImV4cCI6MTY1OTA4NzQ0Mn0.iiLAWnRekFC-wh1A8gjIBLyO_MnBVnc-mmaeYf7b4NE",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\": \"www.youtube.com/watch?v=jnIA54RmGkM&ab_channel=DeportesUncomo\",\n    \"title\": \"Vaya caida\",\n    \"description\": \"podemos ver la caida de mi amigo con la bici AJAJAJA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/article",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Articles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/article",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Keyword Article",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/article/",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"article",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ratings",
+			"item": [
+				{
+					"name": "Rating",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjMzLCJpYXQiOjE2NTY0OTU0NDIsImV4cCI6MTY1OTA4NzQ0Mn0.iiLAWnRekFC-wh1A8gjIBLyO_MnBVnc-mmaeYf7b4NE",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/article/1/rating",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"article",
+								"1",
+								"rating"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token_dani",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "token_angel",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "token_test",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "user_1",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "admin",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
